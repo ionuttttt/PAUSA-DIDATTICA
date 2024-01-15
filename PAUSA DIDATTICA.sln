@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAUSA DIDATTICA", "PAUSA DIDATTICA\PAUSA DIDATTICA.csproj", "{9081E08D-0E3C-44E4-B856-CBF9237BDB90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9081E08D-0E3C-44E4-B856-CBF9237BDB90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9081E08D-0E3C-44E4-B856-CBF9237BDB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9081E08D-0E3C-44E4-B856-CBF9237BDB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9081E08D-0E3C-44E4-B856-CBF9237BDB90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DE0286F-A733-46E6-85BF-D7BEC9E4BD73}
+	EndGlobalSection
+EndGlobal
