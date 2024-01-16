@@ -9,8 +9,8 @@ namespace pausa_didattica
 {
     class persona
     {
-        protected string nome;
-        protected string cognome;
+        protected string nome, cognome, stato, provincia;
+
 
         public string Nome
         {
@@ -32,6 +32,26 @@ namespace pausa_didattica
 
         }
 
+        public string Stato
+        {
+            get => stato;
+            set
+            {
+                stato = value;
+            }
+
+        }
+
+        public string Provincia
+        {
+            get => provincia;
+            set
+            {
+                provincia = value;
+            }
+
+        }
+
         public string scriviN()
         {
             string n = nome;
@@ -48,18 +68,18 @@ namespace pausa_didattica
     class conto : persona
     {
         private float euro = 0;
-        private bool chiudi;
+        private string chiudi;
         persona persona = new persona();
 
-        public bool apri()
+        public string apri()
         {
-            chiudi = false;
+            chiudi = "aperto";
             return chiudi;
         }
 
-        public bool chiuso()
+        public string chiuso()
         {
-            chiudi = true;
+            chiudi = "chiuso";
             euro = 0;
             return chiudi;
         }
@@ -87,8 +107,8 @@ namespace pausa_didattica
     {
         conto[] conto = new conto[100];
         private int s, n = -1, c;
-        private string _n, _c;
-        private string[] con=new string[100];
+        private float p1;
+        private string _n, _c,p;
 
 
         public int S
@@ -104,7 +124,7 @@ namespace pausa_didattica
         {
              int c = -1;
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i <= n; i++)
             {
                 if (_n == conto[i].Nome && _c == conto[i].Cognome)
                 {
@@ -116,16 +136,32 @@ namespace pausa_didattica
             return c;
         }
 
+        public float cercaP(string p)
+        {
+            float c = 0;
+
+            for (int i = 0; i <= n; i++)
+            {
+                if (p == conto[i].Provincia)
+                {
+                    c += conto[i].saldo();
+                }
+            }
+
+            return c;
+        }
+
         public void apriConto()
         {
             n++;
             conto[n] = new conto();
-            conto[n].apri();
-            con[n] = "aperto";
+            conto[n].Stato=conto[n].apri();
             Console.WriteLine("Inserisic il nome dell'utente");
             conto[n].Nome = Console.ReadLine();
             Console.WriteLine("Inserisic il cognome dell'utente");
             conto[n].Cognome = Console.ReadLine();
+            Console.WriteLine("Inserisci la regione dell'utente");
+            conto[n].Provincia = Console.ReadLine();
 
         }
 
@@ -142,9 +178,9 @@ namespace pausa_didattica
             }
             else
             {
-                con[c] = "chiuso";
+
                 Console.WriteLine($"Erogazione saldo corrente di: {conto[c].saldo()}\nIl conto è stato chiuso");
-                conto[c].chiuso();
+                conto[c].Stato=conto[c].chiuso();
             }
         }
 
@@ -215,7 +251,7 @@ namespace pausa_didattica
             }
             else
             {
-                Console.WriteLine($"Utente: {conto[c].scriviC()} {conto[c].scriviN()}\nSaldo {conto[c].saldo()}\nStato: {con[c]}");
+                Console.WriteLine($"Utente: {conto[c].scriviC()} {conto[c].scriviN()}\nSaldo {conto[c].saldo()}\nStato: {conto[c].Stato}");
             }
         }
 
@@ -223,6 +259,14 @@ namespace pausa_didattica
         {
             e = false;
             return e;
+        }
+
+        public void VediSaldoProvincia()
+        {
+            Console.WriteLine("Inserisci la regione");
+            p= Console.ReadLine();
+            p1 = cercaP(p.ToString());
+            Console.WriteLine($"Il saldo della regione {p} è di {p1 }");
         }
     }
 
@@ -234,7 +278,7 @@ namespace pausa_didattica
             banca banca = new banca();
             do
             {
-                Console.WriteLine($"Premi:\n1) Apri conto\n2) Chiudi conto\n3) Deposita sul conto\n4) Preleva dal conto\n5) Visualizza il saldo\n6) Vedi info\n7) esci");
+                Console.WriteLine($"Premi:\n1) Apri conto\n2) Chiudi conto\n3) Deposita sul conto\n4) Preleva dal conto\n5) Visualizza il saldo\n6) Vedi info\n7) Visualizza saldo provincia\n8) Esci");
                 banca.S = int.Parse(Console.ReadLine());
 
 
@@ -246,7 +290,8 @@ namespace pausa_didattica
                     case 4: banca.PrelevaDaConto(); break;
                     case 5: banca.VediSaldoConto(); break;
                     case 6: banca.VediInfoConto(); break;
-                    case 7: e = banca.esci(e); break;
+                    case 7: banca.VediSaldoProvincia(); break;
+                    case 8: e = banca.esci(e); break;
                 }
             } while (e == true);
 
