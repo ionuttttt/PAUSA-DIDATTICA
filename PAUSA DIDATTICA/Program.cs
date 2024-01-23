@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -105,10 +106,12 @@ namespace pausa_didattica
 
     class banca
     {
-        conto[] conto = new conto[100];
+        private List<conto> conto = new List<conto>();
         private int s, n = -1, c;
         private float p1;
-        private string _n, _c,p;
+        private string _n, _c,p;     
+        
+
 
 
         public int S
@@ -152,9 +155,9 @@ namespace pausa_didattica
         }
 
         public void apriConto()
-        {
+        {           
             n++;
-            conto[n] = new conto();
+            conto.Add(new conto());
             conto[n].Stato=conto[n].apri();
             Console.WriteLine("Inserisic il nome dell'utente");
             conto[n].Nome = Console.ReadLine();
